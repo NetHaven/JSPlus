@@ -1,5 +1,5 @@
-/* JS Plus Version 1.0 
- Copyright Brian Ferris 2013
+/* JS Plus Version 1.0.1 
+ Copyright 2013
  This Code is Licensed Under the AGPL(http://www.gnu.org/licenses/agpl.html)
 
  * */
@@ -877,7 +877,7 @@ JS.lang.Class = function(ClassObj)
 *     
 * Created: 06/08/13
 * 
-* Last Modified: 06/08/13
+* Last Modified: 06/27/13
 *                
 * Package: JS.lang.
 *
@@ -900,9 +900,9 @@ JS.lang.ClassFactory = function()
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 06/27/13
 	*                
-	* Passed Parameters: None.
+	* Passed Parameters: ClassObj.
 	* 
 	* Local Objects: ClassString, Constructor, DefaultValue, FieldName, Fields,
 	* 				 HashedConstParams, i, j, MethodName, Methods, NewClass, 
@@ -921,7 +921,7 @@ JS.lang.ClassFactory = function()
 	* 
 	* Description: Creates a JavaScript class.
 	**************************************************************************/
-	createClass = function()
+	createClass = function(ClassObj)
 	{ 												   /* Method createClass */
 		var ClassString;
 		var Constructor;
@@ -985,7 +985,7 @@ JS.lang.ClassFactory = function()
 			}
 		}
 
-		ClassString += "\tvar super;\n";
+		ClassString += "\tvar SuperClass;\n";
 		
 		for (i = 0; i < Methods.length; i++) 
 		{
@@ -1018,15 +1018,15 @@ JS.lang.ClassFactory = function()
 			}
 		}
 		
-		if (NewClass.getSuperClass() != JS.lang.Object)
+		if (NewClass.getSuperClass() != JS.lang.JSObject)
 		{
-			ClassString += "\tsuper=new " + NewClass.getSuperClass().getName() + "();\n";
+			ClassString += "\tSuperClass=new " + NewClass.getSuperClass().getName() + "();\n";
 		}	
 		else
 		{
-			ClassString += "\tsuper=new JS.lang.Object();\n";
+			ClassString += "\tSuperClass=new JS.lang.JSObject();\n";
 		}
-		ClassString += "\tfor (var i in super)\n\t\tif (!this[i])\n\t{\n\t\t\tthis[i]=super[i];\n\t}\n"
+		ClassString += "\tfor (var i in SuperClass)\n\t\tif (!this[i])\n\t{\n\t\t\tthis[i]=SuperClass[i];\n\t}\n"
 
 		if (Constructor)
 		{
@@ -1081,7 +1081,7 @@ JS.lang.ClassFactory = function()
 		ClassString += "\t};\n";
 
 		/* Expose Inherited Members */
-		ClassString += "for (var i in super)\n\t\tif (this[i])\n\t{Instance[i] = this[i];}\n"
+		ClassString += "for (var i in SuperClass)\n\t\tif (this[i])\n\t{Instance[i] = this[i];}\n"
 		ClassString += "return (Instance);";
 		ClassString += " };\n";
 		
@@ -1133,4 +1133,4 @@ JS.lang.ClassFactory = function()
 	return ({
 		createClass:createClass	
 	});
-}; 													   /* Class ClassFactory */
+}(); 												   /* Class ClassFactory */
