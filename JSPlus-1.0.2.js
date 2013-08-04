@@ -1126,7 +1126,6 @@ JS.lang.ClassFactory = function()
 			}
 		}
 		
-		alert(ClassString);
 		eval(ClassString);
 	}; 												   /* Method createClass */
 	
