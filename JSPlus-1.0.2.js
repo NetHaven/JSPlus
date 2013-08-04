@@ -1,4 +1,4 @@
-/* JS Plus Version 1.0.1 
+/* JS Plus Version 1.0.2 
  Copyright 2013
  This Code is Licensed Under the AGPL(http://www.gnu.org/licenses/agpl.html)
 
@@ -1020,7 +1020,7 @@ JS.lang.ClassFactory = function()
 		
 		if (NewClass.getSuperClass() != JS.lang.JSObject)
 		{
-			ClassString += "\tSuperClass=new " + NewClass.getSuperClass().getName() + "();\n";
+			ClassString += "\tSuperClass=new " + NewClass.getSuperClass() + "();\n";
 		}	
 		else
 		{
@@ -1126,7 +1126,7 @@ JS.lang.ClassFactory = function()
 			}
 		}
 		
-//		alert(ClassString);
+		alert(ClassString);
 		eval(ClassString);
 	}; 												   /* Method createClass */
 	
