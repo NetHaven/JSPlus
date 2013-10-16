@@ -1,10 +1,11 @@
-/* JS Plus Version 1.0.2 
+/* JS+ Version 1.1
  Copyright 2013
  This Code is Licensed Under the AGPL(http://www.gnu.org/licenses/agpl.html)
 
  * */
 
 var JS = {};
+JS.graphics = {};
 JS.lang = {};
 JS.lang.reflect = {};
 
@@ -13,7 +14,7 @@ JS.lang.reflect = {};
 *     
 * Created: 04/25/10
 * 
-* Last Modified: 05/08/10
+* Last Modified: 08/26/13
 *                
 * Package: JS.lang
 *
@@ -71,7 +72,7 @@ JS.lang.JSObject = function()
 	*     
 	* Created: 04/25/10
 	* 
-	* Last Modified: 04/25/10
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: obj.
 	* 
@@ -85,7 +86,7 @@ JS.lang.JSObject = function()
 	**************************************************************************/
 	equals = function(obj)
 	{ 														/* Method equals */
-		return (HashCode == obj.hashCode());
+		return (HashCode === obj.hashCode());
 	}; 														/* Method equals */
 	
 	/**************************************************************************
@@ -93,7 +94,7 @@ JS.lang.JSObject = function()
 	*     
 	* Created: 04/25/10
 	* 
-	* Last Modified: 04/25/10
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -107,7 +108,7 @@ JS.lang.JSObject = function()
 	**************************************************************************/
 	hashCode = function()
 	{ 													  /* Method hashCode */
-		return (HashCode);
+		return HashCode;
 	}; 													  /* Method hashCode */
 
 	init();
@@ -251,7 +252,7 @@ JS.lang.reflect.Modifier.STATIC = 4;
 *     
 * Created: 06/08/13
 * 
-* Last Modified: 06/08/13
+* Last Modified: 08/26/13
 *                
 * Package: JS.lang.reflect
 *
@@ -286,7 +287,7 @@ JS.lang.reflect.Field = function(FieldObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: FieldObj.
 	* 
@@ -299,7 +300,7 @@ JS.lang.reflect.Field = function(FieldObj)
 	* Description: Returns the methods of this class.
 	**************************************************************************/
 	init = function(FieldObj)
-	{
+	{ 													/* Constructor Field */
 		if (!FieldObj.name)
 		{
 			throw "Syntax Error: No Field Name Specified";
@@ -309,9 +310,9 @@ JS.lang.reflect.Field = function(FieldObj)
 		
 		if (FieldObj.access)
 		{
-			Public = FieldObj.access == JS.lang.reflect.Modifier.PUBLIC ? true : false;
-			Private = FieldObj.access == JS.lang.reflect.Modifier.PRIVATE ? true : false;
-			Static = FieldObj.access == JS.lang.reflect.Modifier.STATIC ? true : false;
+			Public = FieldObj.access === JS.lang.reflect.Modifier.PUBLIC ? true : false;
+			Private = FieldObj.access === JS.lang.reflect.Modifier.PRIVATE ? true : false;
+			Static = FieldObj.access === JS.lang.reflect.Modifier.STATIC ? true : false;
 		}
 		else
 		{
@@ -327,13 +328,12 @@ JS.lang.reflect.Field = function(FieldObj)
 		});
 	}; 													/* Constructor Field */
 
-	/* Method Definitions */
 	/**************************************************************************
 	* Module: Method getDefaultValue
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -347,7 +347,7 @@ JS.lang.reflect.Field = function(FieldObj)
 	**************************************************************************/
 	getDefaultValue = function()
 	{ 											   /* Method getDefaultValue */
-		return (DefaultValue);
+		return DefaultValue;
 	}; 											   /* Method getDefaultValue */
 	
 	/**************************************************************************
@@ -355,7 +355,7 @@ JS.lang.reflect.Field = function(FieldObj)
 	*     
 	* Created: 04/16/10
 	* 
-	* Last Modified: 04/16/10
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -369,7 +369,7 @@ JS.lang.reflect.Field = function(FieldObj)
 	**************************************************************************/
 	getModifier = function()
 	{ 												   /* Method getModifier */
-		return (Modifier);
+		return Modifier;
 	}; 												   /* Method getModifier */
 	
 	/**************************************************************************
@@ -377,7 +377,7 @@ JS.lang.reflect.Field = function(FieldObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -391,7 +391,7 @@ JS.lang.reflect.Field = function(FieldObj)
 	**************************************************************************/
 	getName = function() 
 	{ 													   /* Method getName */
-		return (Name);	
+		return Name;	
 	}; 													   /* Method getName */
 
 	init(FieldObj);
@@ -408,7 +408,7 @@ JS.lang.reflect.Field = function(FieldObj)
 *     
 * Created: 06/08/13
 * 
-* Last Modified: 06/08/13
+* Last Modified: 08/26/13
 *                
 * Package: JS.lang.reflect
 *
@@ -445,7 +445,7 @@ JS.lang.reflect.Method = function(MethodObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: MethodObj.
 	* 
@@ -467,14 +467,14 @@ JS.lang.reflect.Method = function(MethodObj)
 		
 		if (MethodObj.access) 
 		{
-			Public = MethodObj.access == JS.lang.reflect.Modifier.PUBLIC ? true : false;
-			Private = MethodObj.access == JS.lang.reflect.Modifier.PRIVATE ? true : false;
-			Static = MethodObj.access == JS.lang.reflect.Modifier.STATIC ? true : false;
+			Public = MethodObj.access === JS.lang.reflect.Modifier.PUBLIC ? true : false;
+			Private = MethodObj.access === JS.lang.reflect.Modifier.PRIVATE ? true : false;
+			Static = MethodObj.access === JS.lang.reflect.Modifier.STATIC ? true : false;
 		}
 		else 
 		{
 			/* Constructors Are Private By Default */
-			if (MethodObj.name == "init")
+			if (MethodObj.name === "init")
 			{
 				Public = false;
 				Private = true;
@@ -511,7 +511,7 @@ JS.lang.reflect.Method = function(MethodObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -525,7 +525,7 @@ JS.lang.reflect.Method = function(MethodObj)
 	**************************************************************************/
 	getCode = function() 
 	{ 													   /* Method getCode */
-		return (Code);
+		return Code;
 	}; 													   /* Method getCode */
 	
 	/**************************************************************************
@@ -533,7 +533,7 @@ JS.lang.reflect.Method = function(MethodObj)
 	*     
 	* Created: 04/16/10
 	* 
-	* Last Modified: 04/16/10
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -547,7 +547,7 @@ JS.lang.reflect.Method = function(MethodObj)
 	**************************************************************************/
 	getModifier = function()
 	{ 												   /* Method getModifier */
-		return (Modifier);
+		return Modifier;
 	}; 												   /* Method getModifier */
 	
 	/**************************************************************************
@@ -555,7 +555,7 @@ JS.lang.reflect.Method = function(MethodObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -569,7 +569,7 @@ JS.lang.reflect.Method = function(MethodObj)
 	**************************************************************************/
 	getName = function() 
 	{ 													   /* Method getName */
-		return (Name);	
+		return Name;
 	}; 													   /* Method getName */
 
 	/**************************************************************************
@@ -577,7 +577,7 @@ JS.lang.reflect.Method = function(MethodObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -591,7 +591,7 @@ JS.lang.reflect.Method = function(MethodObj)
 	**************************************************************************/
 	getParameters = function() 
 	{ 												 /* Method getParameters */
-		return (Params);
+		return Params;
 	}; 												 /* Method getParameters */
 
 	init(MethodObj);
@@ -609,7 +609,7 @@ JS.lang.reflect.Method = function(MethodObj)
 *     
 * Created: 06/08/13
 * 
-* Last Modified: 06/08/13
+* Last Modified: 08/26/13
 *                
 * Package: JS.lang.
 *
@@ -746,7 +746,7 @@ JS.lang.Class = function(ClassObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -760,7 +760,7 @@ JS.lang.Class = function(ClassObj)
 	**************************************************************************/
 	getFields = function()
 	{ 													 /* Method getFields */
-		return (Fields);
+		return Fields;
 	}; 													 /* Method getFields */
 	
 	/**************************************************************************
@@ -768,7 +768,7 @@ JS.lang.Class = function(ClassObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: MethodName.
 	* 
@@ -786,12 +786,12 @@ JS.lang.Class = function(ClassObj)
 		
 		for (i = 0; i < Methods.length; i++)
 		{
-			if (Methods[i].getName() == MethodName)
+			if (Methods[i].getName() === MethodName)
 			{
 				return (Methods[i]);
 			}	
 		}		
-		return (null);
+		return null;
 	}; 													 /* Method getMethod */
 
 	/**************************************************************************
@@ -799,7 +799,7 @@ JS.lang.Class = function(ClassObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -813,7 +813,7 @@ JS.lang.Class = function(ClassObj)
 	**************************************************************************/
 	getMethods = function()
 	{ 													/* Method getMethods */
-		return (Methods);	
+		return Methods;	
 	}; 													/* Method getMethods */
 	
 	/**************************************************************************
@@ -821,7 +821,7 @@ JS.lang.Class = function(ClassObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -835,7 +835,7 @@ JS.lang.Class = function(ClassObj)
 	**************************************************************************/
 	getName = function()
 	{ 													   /* Method getName */
-		return (Name);
+		return Name;
 	}; 													   /* Method getName */
 	
 	/**************************************************************************
@@ -843,7 +843,7 @@ JS.lang.Class = function(ClassObj)
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/08/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: None.
 	* 
@@ -857,7 +857,7 @@ JS.lang.Class = function(ClassObj)
 	**************************************************************************/
 	getSuperClass = function()
 	{ 												 /* Method getSuperClass */
-		return (SuperClass);
+		return SuperClass;
 	}; 												 /* Method getSuperClass */
 
 	init();
@@ -877,7 +877,7 @@ JS.lang.Class = function(ClassObj)
 *     
 * Created: 06/08/13
 * 
-* Last Modified: 06/27/13
+* Last Modified: 08/25/13
 *                
 * Package: JS.lang.
 *
@@ -891,7 +891,7 @@ JS.lang.Class = function(ClassObj)
 *
 * Description: The class factory will create a JavaScript class.
 ******************************************************************************/
-JS.lang.ClassFactory = function()
+JS.lang.ClassFactory = (function()
 { 													   /* Class ClassFactory */
 	var createClass;
 	
@@ -900,13 +900,14 @@ JS.lang.ClassFactory = function()
 	*     
 	* Created: 06/08/13
 	* 
-	* Last Modified: 06/27/13
+	* Last Modified: 08/26/13
 	*                
 	* Passed Parameters: ClassObj.
 	* 
-	* Local Objects: ClassString, Constructor, DefaultValue, FieldName, Fields,
-	* 				 HashedConstParams, i, j, MethodName, Methods, NewClass, 
-	* 				 Params, PublicElementCount.
+	* Local Objects: ClassName, ClassPath, ClassString, Constructor, 
+	* 				 DefaultValue, FieldName, Fields, HashedConstParams, 
+	* 				 HashString, i, j, MethodName, Methods, NewClass, Params, 
+	* 				 PublicElementCount.
 	* 
 	* Methods Called: Class.getConstructor(), Class.getName(), 
 	* 				  Method.getParameters(), Class.getFields(), 
@@ -923,12 +924,15 @@ JS.lang.ClassFactory = function()
 	**************************************************************************/
 	createClass = function(ClassObj)
 	{ 												   /* Method createClass */
+		var ClassName;
+		var ClassPath;
 		var ClassString;
 		var Constructor;
 		var DefaultValue;
 		var FieldName;
 		var Fields;
 		var HashedConstParams;
+		var HashString;
 		var i;
 		var j;
 		var MethodName;
@@ -938,9 +942,19 @@ JS.lang.ClassFactory = function()
 		var PublicElementCount;
 								
 		NewClass = new JS.lang.Class(ClassObj);
+		ClassName = NewClass.getName();
 		
 		Constructor = NewClass.getConstructor();
-		ClassString = NewClass.getName() + "=function(";
+		if (ClassObj.pkg)
+		{
+			ClassPath = ClassObj.pkg + "." + ClassName;
+		}
+		else
+		{
+			ClassPath = ClassName;
+		}
+		ClassString = ClassPath + "=function(";
+
 		if (Constructor) 
 		{
 			Params = Constructor.getParameters();
@@ -1018,7 +1032,7 @@ JS.lang.ClassFactory = function()
 			}
 		}
 		
-		if (NewClass.getSuperClass() != JS.lang.JSObject)
+		if (NewClass.getSuperClass() !== JS.lang.JSObject)
 		{
 			ClassString += "\tSuperClass=new " + NewClass.getSuperClass() + "();\n";
 		}	
@@ -1081,7 +1095,7 @@ JS.lang.ClassFactory = function()
 		ClassString += "\t};\n";
 
 		/* Expose Inherited Members */
-		ClassString += "for (var i in SuperClass)\n\t\tif (this[i])\n\t{Instance[i] = this[i];}\n"
+		ClassString += "for (var i in SuperClass)\n\t\tif (this[i])\n\t{Instance[i] = this[i];}\n";
 		ClassString += "return (Instance);";
 		ClassString += " };\n";
 		
@@ -1090,7 +1104,7 @@ JS.lang.ClassFactory = function()
 		{
 			if (Fields[i].getModifier().isStatic()) 
 			{
-				ClassString += NewClass.getName() + "." + Fields[i].getName();
+				ClassString += ClassPath + "." + Fields[i].getName();
 				DefaultValue = Fields[i].getDefaultValue();
 				if (DefaultValue)
 				{
@@ -1108,7 +1122,7 @@ JS.lang.ClassFactory = function()
 		{
 			if (Methods[i].getModifier().isStatic()) 
 			{
-				ClassString += NewClass.getName() + "." + Methods[i].getName() + "=function(";
+				ClassString += ClassPath + "." + Methods[i].getName() + "=function(";
 				
 				Params = Methods[i].getParameters();
 				if (Params.length > 0) 
@@ -1132,4 +1146,526 @@ JS.lang.ClassFactory = function()
 	return ({
 		createClass:createClass	
 	});
-}(); 												   /* Class ClassFactory */
+}()); 												   /* Class ClassFactory */
+
+/******************************************************************************
+* Module: Class Dimension
+*     
+* Created: 05/08/10
+* 
+* Last Modified: 08/26/13
+*                
+* Package: JS.graphics
+*
+* Extends: None.
+*
+* Events: None.
+*
+* Local Objects: height, width.
+* 
+* Methods: getHeight(), getWidth(), setHeight(), setSize(), setWidth().
+*
+* Description: The Dimension class encapsulates the width and height of an 
+* 			   object.
+******************************************************************************/
+JS.graphics.Dimension = function()
+{ 														  /* Class Dimension */
+	/* Fields */
+	var height = 0;
+	var width = 0;
+	
+	/* Methods */
+	var getHeight;
+	var getWidth;
+	var setHeight;
+	var setSize;
+	var setWidth;
+	
+	/**************************************************************************
+	* Module: Method getHeight
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 08/26/13
+	*                
+	* Passed Parameters: None.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: height.
+	* 
+	* Description: Returns the height of this Dimension object.
+	**************************************************************************/
+	getHeight = function()
+	{ 													 /* Method setHeight */
+		return height;
+	}; 													 /* Method setHeight */
+	
+	/**************************************************************************
+	* Module: Method getWidth
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 08/26/13
+	*                
+	* Passed Parameters: None.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: width.
+	* 
+	* Description: Returns the width of this Dimension object.
+	**************************************************************************/
+	getWidth = function()
+	{ 													  /* Method getWidth */
+		return width;
+	}; 													  /* Method getWidth */
+	
+	/**************************************************************************
+	* Module: Method setHeight
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 05/08/10
+	*                
+	* Passed Parameters: value.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: None.
+	* 
+	* Description: Sets the height of this Dimension object.
+	**************************************************************************/
+	setHeight = function(value)
+	{ 													 /* Method setHeight */
+		height = value;
+	}; 													 /* Method setHeight */
+	
+	/**************************************************************************
+	* Module: Method setSize
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 08/18/13
+	*                
+	* Passed Parameters: w, h.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: None.
+	* 
+	* Description: Sets the height and width of this Dimension object.
+	**************************************************************************/
+	setSize = function(w, h)
+	{ 													   /* Method setSize */
+		width = w;
+		height = h;
+	};													   /* Method setSize */
+	
+	/**************************************************************************
+	* Module: Method setWidth
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 05/08/10
+	*                
+	* Passed Parameters: value.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: None.
+	* 
+	* Description: Sets the width of this Dimension object.
+	**************************************************************************/
+	setWidth = function(value)
+	{ 													  /* Method setWidth */
+		width = value;
+	}; 													  /* Method setWidth */
+	
+	return ({
+		getHeight:getHeight,
+		getWidth:getWidth,
+		setHeight:setHeight(),
+		setSize:setSize(),
+		setWidth:setWidth()
+	});
+}; 														  /* Class Dimension */
+
+/******************************************************************************
+* Module: Class Point
+*     
+* Created: 05/08/10
+* 
+* Last Modified: 08/18/13
+*                
+* Package: JS.graphics
+*
+* Extends: None.
+*
+* Events: None.
+*
+* Local Objects: x, y.
+* 
+* Methods: getX(), getY(), setLocation(), setX(), setY().
+*
+* Description: The Point class encapsulates the x and y coordinate of a 
+* 			   component in a single object.
+******************************************************************************/
+JS.graphics.Point = function()
+{ 															  /* Class Point */
+	/* Fields */
+	var x = 0;
+	var y = 0;
+
+	/* Methods */
+	var getX;
+	var getY;
+	var setLocation;
+	var setX;
+	var setY;
+	
+	/**************************************************************************
+	* Module: Method getX
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 08/18/13
+	*                
+	* Passed Parameters: None.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: x.
+	* 
+	* Description: Returns the x coordinate of this point.
+	**************************************************************************/
+	getX = function()
+	{ 														  /* Method getX */
+		return x;
+	}; 														  /* Method getX */
+	
+	/**************************************************************************
+	* Module: Method getY
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 08/18/13
+	*                
+	* Passed Parameters: None.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: x.
+	* 
+	* Description: Returns the y coordinate of this point.
+	**************************************************************************/
+	getY = function()
+	{ 														  /* Method getY */
+		return y;
+	}; 														  /* Method getY */
+	
+	/**************************************************************************
+	* Module: Method setLocation
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 08/18/13
+	*                
+	* Passed Parameters: None.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: None.
+	* 
+	* Description: A convenience method for setting both the x and y coordinate
+	* 		       of this Point object simultaneously.
+	**************************************************************************/
+	setLocation = function(newX, newY)
+	{ 												   /* Method setLocation */
+		x = newX;
+		y = newY;	
+	}; 												   /* Method setLocation */
+	
+	/**************************************************************************
+	* Module: Method setX
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 08/18/13
+	*                
+	* Passed Parameters: value.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: None.
+	* 
+	* Description: Sets the x coordinate of this point.
+	**************************************************************************/
+	setX = function(value)
+	{ 														  /* Method setX */
+		x = value;
+	}; 														  /* Method setX */
+	
+	/**************************************************************************
+	* Module: Method setY
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 08/18/13
+	*                
+	* Passed Parameters: value.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: None.
+	* 
+	* Description: Sets the y coordinate of this point.
+	**************************************************************************/
+	setY = function(value)
+	{ 														  /* Method setY */
+		y = value;
+	}; 														  /* Method setY */
+	
+	return ({
+		getX:getX,
+		getY:getY,
+		setLocation:setLocation,
+		setX:setX,
+		setY:setY
+	});
+}; 															  /* Class Point */
+
+JS.lang.Exception = function(Msg)
+{ 														  /* Class Exception */
+	/* Fields */
+	var Message;
+	
+	/* Methods */
+	var init;
+	var getMessage;
+
+	/**************************************************************************
+	* Module: Constructor Exception
+	*     
+	* Created: 05/01/10
+	* 
+	* Last Modified: 06/28/13
+	*                
+	* Passed Parameters: Msg.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: None.
+	* 
+	* Description: Initializes the Exception class.
+	**************************************************************************/
+	init = function(Msg)
+	{ 												/* Constructor Exception */
+		Message = Msg;
+	}; 												/* Constructor Exception */
+	
+	/**************************************************************************
+	* Module: Method getMessage
+	*     
+	* Created: 05/01/10
+	* 
+	* Last Modified: 06/28/13
+	*                
+	* Passed Parameters: Msg.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None. 
+	*
+	* Returned Value: None.
+	* 
+	* Description: Returns the message associated with this exception.
+	**************************************************************************/
+	getMessage = function()
+	{ 													/* Method getMessage */
+		return Message;
+	}; 													/* Method getMessage */
+	
+	init(Msg);
+	
+	return ({
+		getMessage:getMessage
+	});
+}; 														  /* Class Exception */
+
+/******************************************************************************
+* Module: Class System
+*     
+* Created: 04/25/10
+* 
+* Last Modified: 06/28/13
+*                
+* Package: JS.lang
+*
+* Extends: None.
+*
+* Passed Parameters: None.
+* 
+* Events: None.
+*
+* Local Objects: None.
+* 
+* Methods: getBrowser(), getBrowserVersion(), getOS(), getScreenResolution(),
+* 		   getVersion().
+*
+* Description: The System class contains several useful methods that obtain
+* 			   system specific information. It cannot be instantiated.
+******************************************************************************/
+JS.lang.System = (function()
+{ 															 /* Class System */
+	/* Methods */
+	var getBrowser;
+	var getBrowserVersion;
+	var getOS;
+	var getScreenResolution;
+	var getVersion;
+	
+	/**************************************************************************
+	* Module: Method getBrowser
+	*     
+	* Created: 04/25/10
+	* 
+	* Last Modified: 06/28/13
+	*                
+	* Passed Parameters: None.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None.
+	*
+	* Returned Value: navigator.appName.
+	* 
+	* Description: Returns the name of the user's browser.
+	**************************************************************************/
+	getBrowser = function()
+	{ 													/* Method getBrowser */
+		return navigator.appName;		
+	};													/* Method getBrowser */
+	
+	/**************************************************************************
+	* Module: Method getBrowserVersion
+	*     
+	* Created: 04/25/10
+	* 
+	* Last Modified: 06/28/13
+	*                
+	* Passed Parameters: None.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None.
+	*
+	* Returned Value: navigator.appVersion.
+	* 
+	* Description: Returns the version of the user's browser.
+	**************************************************************************/
+	getBrowserVersion = function()
+	{ 											 /* Method getBrowserVersion */
+		return navigator.appVersion;		
+	}; 											 /* Method getBrowserVersion */
+	
+	/**************************************************************************
+	* Module: Method getOS
+	*     
+	* Created: 04/25/10
+	* 
+	* Last Modified: 06/28/13
+	*                
+	* Passed Parameters: None.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None.
+	*
+	* Returned Value: navigator.platform.
+	* 
+	* Description: Returns the user's operating system.
+	**************************************************************************/
+	getOS = function()
+	{ 														 /* Method getOS */
+		return navigator.platform;
+	}; 														 /* Method getOS */
+	
+	/**************************************************************************
+	* Module: Method getScreenResolution
+	*     
+	* Created: 05/08/10
+	* 
+	* Last Modified: 06/28/13
+	*                
+	* Passed Parameters: None.
+	* 
+	* Local Objects: ScreenRes.
+	* 
+	* Methods Called: Dimension.setSize().
+	*
+	* Returned Value: ScreenRes
+	* 
+	* Description: Returns the resolution of the user's screen as a dimension.
+	**************************************************************************/
+	getScreenResolution = function()
+	{ 										   /* Method getScreenResolution */
+		var ScreenRes;
+		
+		ScreenRes = new JS.graphics.Dimension();
+		ScreenRes.setSize(screen.width, screen.height);
+		return ScreenRes;		
+	}; 										   /* Method getScreenResolution */
+	
+	/**************************************************************************
+	* Module: Method getVersion
+	*     
+	* Created: 04/25/10
+	* 
+	* Last Modified: 06/28/13
+	*                
+	* Passed Parameters: None.
+	* 
+	* Local Objects: None.
+	* 
+	* Methods Called: None.
+	*
+	* Returned Value: The version of JS+.
+	* 
+	* Description: Returns the current version of JS+.
+	**************************************************************************/
+	getVersion = function()
+	{ 													/* Method getVersion */
+		return "1.1";
+	}; 													/* Method getVersion */
+	
+	return ({
+		getBrowser:getBrowser,
+		getBrowserVersion:getBrowserVersion,
+		getOS:getOS,
+		getScreenResolution:getScreenResolution,
+		getVersion:getVersion
+	});
+}());	 													 /* Class System */
